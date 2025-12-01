@@ -1,15 +1,16 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { FormData, FormStep, ProductData, MockDataSummary, SurveySession, SurveyResponse, ReviewOption, SurveyQuestion } from '@/lib/types'
+import { FormData, FormStep, MockDataSummary, ProductData, ReviewOption, SurveyQuestion, SurveyResponse, SurveySession } from '@/lib/types'
+import { useEffect, useRef, useState } from 'react'
+
 import { ProductUrlField } from '@/components/form/ProductUrlField'
 import { ReviewStatusField } from '@/components/form/ReviewStatusField'
 import { SentimentSpreadField } from '@/components/form/SentimentSpreadField'
 import { SimilarProductsField } from '@/components/form/SimilarProductsField'
+import { SubmissionSummary } from '@/components/SubmissionSummary'
+import { UserExactProductField } from '@/components/form/UserExactProductField'
 import { UserPersonaField } from '@/components/form/UserPersonaField'
 import { UserPurchaseHistoryField } from '@/components/form/UserPurchaseHistoryField'
-import { UserExactProductField } from '@/components/form/UserExactProductField'
-import { SubmissionSummary } from '@/components/SubmissionSummary'
 
 export default function HomePage() {
   const [currentStep, setCurrentStep] = useState<FormStep>(1)
@@ -918,7 +919,7 @@ export default function HomePage() {
               Form
             </div>
           </div>
-        ) : (
+        ) : (!showSurveyUI && isSubmitted && !isSurveyPaneExpanded && !showReviewPane) ? null : (
           <div className={`${isSubmitted && !isSurveyPaneExpanded && !showSurveyUI ? 'max-w-[100px]' : 'max-w-2xl'} mx-auto`}>
             <>
               <header className="mb-8 flex items-center gap-4">
